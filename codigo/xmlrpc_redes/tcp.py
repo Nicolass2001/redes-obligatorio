@@ -18,7 +18,7 @@ def receive(conn):
     while b'\r\n\r\n' not in data:
         chunk = conn.recv(2048)
         if not chunk: 
-            return
+            raise ConnectionAbortedError('Conexión cerrada por el otro extremo')
         data = data + chunk
 
     sep = b'\r\n\r\n'
@@ -42,7 +42,7 @@ def receive(conn):
     while len(body) < size:
         chunk = conn.recv(2048)
         if not chunk: 
-            return
+            raise ConnectionAbortedError('Conexión cerrada por el otro extremo')
         body = body + chunk
 
     return start_line_first, start_line_second, start_line_third, headers, body

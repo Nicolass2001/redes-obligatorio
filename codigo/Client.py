@@ -27,6 +27,7 @@ resultado2 = conn1.divisionReales(10, 3.14)
 resultado3 = conn1.fechaHora(24, 9, 2025, 8, 30, 0)
 resultado4 = conn1.xor(True, True)
 resultado5 = conn1.dias(datetime.datetime(2024, 1, 1), datetime.datetime(2025, 1, 1))
+resultado6 = conn1.timeout()
 
 print('Resultados funciones Servidor1: ')
 print(f'construirFloat(3, 14) = {resultado1}')
@@ -34,7 +35,6 @@ print(f'divisionReales(10, 3.14) = {resultado2}')
 print(f'fechaHora(24, 9, 2025, 8, 30, 0) = {resultado3}')
 print(f'xor(True, True) = {resultado4}')
 print(f'dias(datetime.datetime(2024, 1, 1), datetime.datetime(2025, 1, 1)) = {resultado5}')
-print()
 
 resultado6 = conn2.listsToMap(['a','b','c'],[1, 2]) # LAS CLAVES EN UN DICCIONARIO DE XLRPC DEBEN SER STRINGS
 resultado7 = conn2.concatStrings('hello', 'world', '!', '!', '!')

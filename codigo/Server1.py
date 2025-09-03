@@ -1,6 +1,6 @@
 import xmlrpc_redes as xmlrpc
 import datetime
-import base64
+import time
 
 def construirFloat(a, b):
     aux = f'{a}.{b}'
@@ -17,6 +17,10 @@ def xor(a, b):
 
 def dias(f1, f2):
     return abs((f1-f2).days)
+
+def timeout():
+    time.sleep(8)
+    return True
 """
 print('Por favor ingrese la IP para el servidor1: ')
 my_ip = str(input())
@@ -30,5 +34,6 @@ server.add_method(divisionReales)
 server.add_method(fechaHora)
 server.add_method(xor)
 server.add_method(dias)
+server.add_method(timeout)
 
 server.serve()
