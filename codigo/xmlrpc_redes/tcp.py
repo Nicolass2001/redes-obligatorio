@@ -13,7 +13,6 @@ def send(conn, data):
         raise  # relanzo la excepción para que el cliente la maneje
 
 def receive(conn):
-    conn.settimeout(10)  # 10 segundos máximo por operación de recv/send - LO DIMOS EN LA CARTILLA
     data = b''
     while b'\r\n\r\n' not in data:
         chunk = conn.recv(2048)

@@ -1,3 +1,4 @@
+import sys
 import xmlrpc_redes as xmlrpc
 import datetime
 import time
@@ -21,13 +22,21 @@ def dias(f1, f2):
 def timeout():
     time.sleep(8)
     return True
-"""
-print('Por favor ingrese la IP para el servidor1: ')
-my_ip = str(input())
-print('Por favor ingrese el Puerto para el servidor1: ')
-my_port = int(input())
-"""
-server = xmlrpc.Server(('127.0.0.1', 5000))
+
+# Pasar los argumentos por consola
+# Primer argumento: puerto
+# Segundo argumento: ip
+if len(sys.argv) >= 2:
+    port = int(sys.argv[1])
+else:
+    port = 5000
+
+if len(sys.argv) >= 3:
+    ip = str(sys.argv[2])
+else:
+    ip = '127.0.0.1'
+
+server = xmlrpc.Server((ip, port))
 
 server.add_method(construirFloat)
 server.add_method(divisionReales)

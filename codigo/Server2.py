@@ -1,3 +1,4 @@
+import sys
 import xmlrpc_redes as xmlrpc
 import base64
 
@@ -54,14 +55,21 @@ def encode(data: str) -> bytes:
     encoded_bytes = base64.b64encode(data_bytes)
     # Convertimos los bytes codificados a string
     return encoded_bytes
-"""
-print('Por favor ingrese la IP para el servidor2: ')
-my_ip = str(input())
-print('Por favor ingrese el Puerto para el servidor2: ')
-my_port = int(input())
-"""
 
-server = xmlrpc.Server(('127.0.0.1', 5001))
+# Pasar los argumentos por consola
+# Primer argumento: puerto
+# Segundo argumento: ip
+if len(sys.argv) >= 2:
+    port = int(sys.argv[1])
+else:
+    port = 5001
+
+if len(sys.argv) >= 3:
+    ip = str(sys.argv[2])
+else:
+    ip = '127.0.0.1'
+
+server = xmlrpc.Server((ip, port))
 
 server.add_method(listsToMap)
 server.add_method(concatStrings)

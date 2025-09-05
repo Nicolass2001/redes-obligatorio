@@ -17,6 +17,7 @@ class Connection:
             
             try:
                 conn.connect((self.host, self.port))
+                conn.settimeout(60)  # 60 segundos máximo por operación de recv/send - LO DIMOS EN LA CARTILLA
                 tcp.send(conn, req)
                 proto, status_code, status_message, headers, body = http.get_http_response(conn)
                 return xml.parse_xmlrpc_response(body)
