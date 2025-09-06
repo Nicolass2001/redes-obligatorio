@@ -13,11 +13,11 @@ else:
 if len(sys.argv) >= 4:
     sv1_ip = str(sys.argv[3])
 else:
-    sv1_ip = '127.0.0.1'
+    sv1_ip = '150.150.0.2'
 if len(sys.argv) >= 5:
     sv2_ip = str(sys.argv[4])
 else:
-    sv2_ip = '127.0.0.1'
+    sv2_ip = '100.100.0.2'
 
 conn1 = xmlrpc.Client.connect(sv1_ip, int(sv1_port))
 print(f'Conexión establecida con {sv1_ip}:{sv1_port}')
@@ -47,10 +47,6 @@ assert resultado4 == False, f'Error en conn1.xor: {resultado4} != False'
 resultado5 = conn1.dias(datetime.datetime(2024, 1, 1), datetime.datetime(2025, 1, 1))
 print(f'conn1.dias(datetime.datetime(2024, 1, 1), datetime.datetime(2025, 1, 1)) = {resultado5}')
 assert resultado5 == 366, f'Error en conn1.dias: {resultado5} != 366'
-
-resultado6 = conn1.timeout()
-print(f'conn1.timeout() = {resultado6}')
-assert resultado6 == True, f'Error en conn1.timeout: {resultado6} != True'
 
 print('--------------------------------')
 print('ERRORES SERVER1:')

@@ -67,7 +67,7 @@ else:
 if len(sys.argv) >= 3:
     ip = str(sys.argv[2])
 else:
-    ip = '127.0.0.1'
+    ip = '100.100.0.2'
 
 server = xmlrpc.Server((ip, port))
 
