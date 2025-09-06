@@ -48,9 +48,9 @@ resultado5 = conn1.dias(datetime.datetime(2024, 1, 1), datetime.datetime(2025, 1
 print(f'conn1.dias(datetime.datetime(2024, 1, 1), datetime.datetime(2025, 1, 1)) = {resultado5}')
 assert resultado5 == 366, f'Error en conn1.dias: {resultado5} != 366'
 
-#resultado6 = conn1.timeout()
-#print(f'conn1.timeout() = {resultado6}')
-#assert resultado6 == True, f'Error en conn1.timeout: {resultado6} != True'
+resultado6 = conn1.timeout()
+print(f'conn1.timeout() = {resultado6}')
+assert resultado6 == True, f'Error en conn1.timeout: {resultado6} != True'
 
 print('--------------------------------')
 print('ERRORES SERVER1:')
