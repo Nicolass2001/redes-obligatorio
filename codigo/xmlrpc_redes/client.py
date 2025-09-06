@@ -23,7 +23,7 @@ class Connection:
                 return xml.parse_xmlrpc_response(body)
             except Exception as e:
                 # Capturo errores de envío o recepción
-                print(f'Error en la comunicación con el servidor: {e}')
+                #print(f'Error en la comunicación con el servidor: {e}')
                 raise  # relanzar si queremos que el caller lo maneje
             finally:
                 conn.close()  # siempre cerramos el socket
