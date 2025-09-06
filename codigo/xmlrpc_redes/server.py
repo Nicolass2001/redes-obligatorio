@@ -23,31 +23,37 @@ class Server:
             if proto != 'HTTP/1.1':
                 resp = xml.build_xmlrpc_fault(5, "Protocolo no soportado: use HTTP/1.1")
                 tcp.send(conn, http.build_http_response(resp, 505, 'HTTP Version Not Supported'))
+                conn.close()
                 return
 
             if method != 'POST':
                 resp = xml.build_xmlrpc_fault(6, "Método no permitido: use POST")
                 tcp.send(conn, http.build_http_response(resp, 405, 'Method Not Allowed'))
+                conn.close()
                 return
             
             if headers.get('content-type') != 'text/xml':
                 resp = xml.build_xmlrpc_fault(7, "Content-Type debe ser text/xml")
                 tcp.send(conn, http.build_http_response(resp, 422, 'Unprocessable Entity'))
+                conn.close()
                 return
             
             if 'user-agent' not in headers:
                 resp = xml.build_xmlrpc_fault(8, "User-Agent requerido")
                 tcp.send(conn, http.build_http_response(resp, 403, 'Forbidden'))
+                conn.close()
                 return
 
             if headers.get('host') != f'{self.host}:{self.port}':
                 resp = xml.build_xmlrpc_fault(9, "Host incorrecto")
                 tcp.send(conn, http.build_http_response(resp, 400, 'Bad Request'))
+                conn.close()
                 return
             
             if 'content-length' not in headers:
                 resp = xml.build_xmlrpc_fault(10, "Content-Length requerido")
                 tcp.send(conn, http.build_http_response(resp, 411, 'Length Required'))
+                conn.close()
                 return
             
             try:
@@ -55,12 +61,14 @@ class Server:
             except Exception as e:
                 resp = xml.build_xmlrpc_fault(1, f'Error parseo de XML: {e}')
                 tcp.send(conn, http.build_http_response(resp))
+                conn.close()
                 return
 
             func = self.methods.get(method_name)
             if func is None:
                 resp = xml.build_xmlrpc_fault(2, f'No existe el método invocado: {method_name}')
                 tcp.send(conn, http.build_http_response(resp))
+                conn.close()
                 return
 
             try:
@@ -68,8 +76,14 @@ class Server:
                 resp = xml.build_xmlrpc_response(result)
             except TypeError as e:
                 resp = xml.build_xmlrpc_fault(3, f'Error en parámetros del método: {e}')
+                tcp.send(conn, http.build_http_response(resp))
+                conn.close()
+                return
             except Exception as e:
                 resp = xml.build_xmlrpc_fault(4, f'Error interno en la ejecución del método: {e}')
+                tcp.send(conn, http.build_http_response(resp))
+                conn.close()
+                return
 
         except Exception as e:
             resp = xml.build_xmlrpc_fault(11, f'Error inesperado en el servidor: {e}')
