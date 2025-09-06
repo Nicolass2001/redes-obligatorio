@@ -10,7 +10,7 @@ else:
 if len(sys.argv) >= 3:
     host = str(sys.argv[2])
 else:
-    host = '127.0.0.1'
+    host = '150.150.0.2'
 
 xml_body = """<?xml version="1.0"?>
 <methodCall>
