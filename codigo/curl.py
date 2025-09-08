@@ -51,7 +51,7 @@ except subprocess.CalledProcessError as e:
     print("STDOUT:", e.stdout)
     print("STDERR:", e.stderr)
 
-print("----------------------------------------------------------------------------")
+print("-------------------------------------------------------------------")
 
 curl_commands = []
 #Protocolo no soportado: use HTTP/1.1
@@ -157,3 +157,5 @@ for curl_command in curl_commands:
       print("El comando falló con código:", e.returncode)
       print("STDOUT:", e.stdout)
       print("STDERR:", e.stderr)
+  
+  print("-------------------------------------------------------------------")
