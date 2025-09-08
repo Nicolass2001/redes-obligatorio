@@ -3,8 +3,8 @@ import xmlrpc_redes as xmlrpc
 import datetime
 import time
 
-def construirFloat(a, b):
-    aux = f'{a}.{b}'
+def construirFloat(unidades, decimales):
+    aux = f'{unidades}.{decimales}'
     return float(aux)
 
 def divisionReales(a, b):
@@ -19,9 +19,18 @@ def xor(a, b):
 def dias(f1, f2):
     return abs((f1-f2).days)
 
-def timeout():
-    time.sleep(8)
+def timeout(t):
+    time.sleep(t)
     return True
+
+def holaMundo():
+    return "Hola Mundo!"
+
+def concatStringEntero(n, s):
+    return s + str(n)
+
+def echo(s):
+    return s
 
 # Pasar los argumentos por consola
 # Primer argumento: puerto
@@ -44,5 +53,8 @@ server.add_method(fechaHora)
 server.add_method(xor)
 server.add_method(dias)
 server.add_method(timeout)
+server.add_method(holaMundo)
+server.add_method(concatStringEntero)
+server.add_method(echo)
 
 server.serve()

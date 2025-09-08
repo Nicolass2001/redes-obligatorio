@@ -1,6 +1,7 @@
 import xmlrpc_redes as xmlrpc
 import datetime
 import sys
+from lorem_text import lorem
 
 if len(sys.argv) >= 2:
     sv1_port = int(sys.argv[1])
@@ -48,10 +49,37 @@ resultado5 = conn1.dias(datetime.datetime(2024, 1, 1), datetime.datetime(2025, 1
 print(f'conn1.dias(datetime.datetime(2024, 1, 1), datetime.datetime(2025, 1, 1)) = {resultado5}')
 assert resultado5 == 366, f'Error en conn1.dias: {resultado5} != 366'
 
+#<---------------- Casos que pidieron los profes -------------->
+
+#Un request a un método sin parámetros y que retorna un único valor
+resultado6 = conn1.holaMundo()
+print(f'conn1.holaMundo() = {resultado6}')
+assert resultado6 == "Hola Mundo!", f'Error en conn1.holaMundo: {resultado6} != "Hola Mundo!"'
+
+#Un request a un método con parámetros entero y string y que retorna un único valor
+resultado7 = conn1.concatStringEntero(5, "cinco = ")
+print(f'conn1.concatStringEntero(5, "cinco -> ") = {resultado7}')
+assert resultado7 == "cinco = 5", f'Error en conn1.concatStringEntero: {resultado7} != "cinco = 5"'
+
+#Implementar un método que recibe un string y devuelve el mismo string (echo)
+texto_largo = lorem.words(20000)
+resultado8 = conn1.echo(texto_largo)
+if (texto_largo == resultado8):
+    print('conn1.echo(texto_largo) -> se recibio el mismo string que texto_largo')
+else:
+    print('Error en conn1.echo -> no se recibio el mismo string que texto_largo')
+
+#Implementar un método que tarde mas de 10 segundos en responder
+print("<--- Ejecutando time.sleep! -->")
+resultado9 = conn1.timeout(15)
+print(f'conn1.timeout(15) = {resultado9}')
+assert resultado9 == True, f'Error en conn1.timeout: {resultado9} != True'
+
 print('--------------------------------')
 print('ERRORES SERVER1:')
 print('--------------------------------')
 #Error No existe el método invocado
+"""
 try:
     resultado_error1 = conn1.noExisteMetodo()
 except Exception as e:
@@ -59,13 +87,28 @@ except Exception as e:
 
 #Error en parámetros del método invocado
 try:
-    resultado_error2 = conn1.construirFloat('b')
+    resultado_error2 = conn1.construirFloat()
 except Exception as e:
     print(e)
 
-#Error interno en la ejecución del método
 try:
-    resultado_error3 = conn1.divisionReales(10, 0)
+    resultado_error3 = conn1.construirFloat(1)
+except Exception as e:
+    print(e)
+
+try:
+    resultado_error4 = conn1.construirFloat(3, 3, 3)
+except Exception as e:
+    print(e)
+
+try:
+    resultado_error5 = conn1.construirFloat('abc', 'd')
+except Exception as e:
+    print(e)
+"""
+#Error interno en la ejecución del método (Division por 0)
+try:
+    resultado_error6 = conn1.divisionReales(10, 0)
 except Exception as e:
     print(e)
 
