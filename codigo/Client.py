@@ -79,7 +79,7 @@ print('--------------------------------')
 print('ERRORES SERVER1:')
 print('--------------------------------')
 #Error No existe el método invocado
-"""
+
 try:
     resultado_error1 = conn1.noExisteMetodo()
 except Exception as e:
@@ -105,7 +105,7 @@ try:
     resultado_error5 = conn1.construirFloat('abc', 'd')
 except Exception as e:
     print(e)
-"""
+
 #Error interno en la ejecución del método (Division por 0)
 try:
     resultado_error6 = conn1.divisionReales(10, 0)
