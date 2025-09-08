@@ -74,6 +74,9 @@ class Server:
             try:
                 result = func(*params)
                 resp = xml.build_xmlrpc_response(result)
+                tcp.send(conn, http.build_http_response(resp))
+                conn.close()
+                return
             except TypeError as e:
                 resp = xml.build_xmlrpc_fault(3, f'Error en parámetros del método: {e}')
                 tcp.send(conn, http.build_http_response(resp))
@@ -87,10 +90,10 @@ class Server:
 
         except Exception as e:
             resp = xml.build_xmlrpc_fault(11, f'Error inesperado en el servidor: {e}')
-        finally:
             tcp.send(conn, http.build_http_response(resp))
             conn.close()
-
+            return
+            
     def serve(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
