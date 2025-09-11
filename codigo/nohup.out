@@ -1,0 +1,55 @@
+Conexión establecida con 150.150.0.2:5000
+Conexión establecida con 100.100.0.2:5001
+
+Funciones Servidor1: 
+Traceback (most recent call last):
+  File "C:\Users\Administrador\redes-obligatorio\codigo\xmlrpc_redes\client.py", line 19, in remote_call
+    conn.connect((self.host, self.port))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrador\redes-obligatorio\codigo\Client.py", line 32, in <module>
+    resultado1 = conn1.construirFloat(3, 14)
+  File "C:\Users\Administrador\redes-obligatorio\codigo\xmlrpc_redes\client.py", line 29, in remote_call
+    conn.close()  # siempre cerramos el socket
+    ~~~~~~~~~~^^
+  File "C:\Python313\Lib\socket.py", line 501, in close
+    def close(self):
+    
+KeyboardInterrupt
+Conexión establecida con 127.0.0.1:5000
+Conexión establecida con 127.0.0.1:5001
+
+Funciones Servidor1: 
+conn1.construirFloat(3, 14) = 3.14
+conn1.divisionReales(10, 3.14) = 3.184713375796178
+conn1.fechaHora(24, 9, 2025, 8, 30, 0) = 2025-09-24 08:30:00
+conn1.xor(True, True) = False
+conn1.dias(datetime.datetime(2024, 1, 1), datetime.datetime(2025, 1, 1)) = 366
+conn1.holaMundo() = Hola Mundo!
+conn1.concatStringEntero(5, "cinco -> ") = cinco = 5
+conn1.echo(texto_largo) -> se recibio el mismo string que texto_largo
+<--- Ejecutando time.sleep! -->
+conn1.timeout(15) = True
+--------------------------------
+ERRORES SERVER1:
+--------------------------------
+Error XML-RPC 2: No existe el método invocado: noExisteMetodo
+Error XML-RPC 3: Error en parámetros del método: construirFloat() missing 2 required positional arguments: 'unidades' and 'decimales'
+Error XML-RPC 3: Error en parámetros del método: construirFloat() missing 1 required positional argument: 'decimales'
+Error XML-RPC 3: Error en parámetros del método: construirFloat() takes 2 positional arguments but 3 were given
+Error XML-RPC 4: Error interno en la ejecución del método: could not convert string to float: 'abc.d'
+Error XML-RPC 4: Error interno en la ejecución del método: division by zero
+--------------------------------
+
+Funciones Servidor2: 
+conn2.listsToMap(['a','b','c'],[1, 2]) = {'a': 1, 'b': 2}
+conn2.concatStrings('hello', 'world', '!', '!', '!') = helloworld!!!
+conn2.existe([1, 2, 3, '4', 5, 'i'], 'j') = False
+conn2.agregarElemento({"a": 1, "b": 2}, 'c', 3) = {'a': 1, 'b': 2, 'c': 3}
+conn2.construirListaEnteros(1, 10) = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+conn2.encode('Hello world!') = b'SGVsbG8gd29ybGQh'
+conn2.decode(b'SG9sYSBtdW5kbyE=') = Hola mundo!

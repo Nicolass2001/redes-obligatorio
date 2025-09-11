@@ -57,7 +57,7 @@ print(f'conn1.holaMundo() = {resultado6}')
 assert resultado6 == "Hola Mundo!", f'Error en conn1.holaMundo: {resultado6} != "Hola Mundo!"'
 
 #Un request a un método con parámetros entero y string y que retorna un único valor
-resultado7 = conn1.concatStringEntero(5, "cinco = ")
+resultado7 = conn1.concatStringEntero(5, "cinco -> ")
 print(f'conn1.concatStringEntero(5, "cinco -> ") = {resultado7}')
 assert resultado7 == "cinco = 5", f'Error en conn1.concatStringEntero: {resultado7} != "cinco = 5"'
 
