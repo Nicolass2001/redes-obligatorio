@@ -21,10 +21,10 @@ else:
     sv2_ip = '100.100.0.2'
 
 conn1 = xmlrpc.Client.connect(sv1_ip, int(sv1_port))
-print(f'Conexión establecida con {sv1_ip}:{sv1_port}')
+print(f'Estableciendo conexion con {sv1_ip}:{sv1_port}')
 
 conn2 = xmlrpc.Client.connect(sv2_ip, int(sv2_port))
-print(f'Conexión establecida con {sv2_ip}:{sv2_port}')
+print(f'Estableciendo conexion con {sv2_ip}:{sv2_port}')
 print()
 
 print('Funciones Servidor1: ')
@@ -59,7 +59,7 @@ assert resultado6 == "Hola Mundo!", f'Error en conn1.holaMundo: {resultado6} != 
 #Un request a un método con parámetros entero y string y que retorna un único valor
 resultado7 = conn1.concatStringEntero(5, "cinco -> ")
 print(f'conn1.concatStringEntero(5, "cinco -> ") = {resultado7}')
-assert resultado7 == "cinco = 5", f'Error en conn1.concatStringEntero: {resultado7} != "cinco = 5"'
+assert resultado7 == "cinco -> 5", f'Error en conn1.concatStringEntero: {resultado7} != "cinco = 5"'
 
 #Implementar un método que recibe un string y devuelve el mismo string (echo)
 texto_largo = lorem.words(20000)
