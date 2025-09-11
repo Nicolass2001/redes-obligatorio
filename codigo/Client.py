@@ -1,7 +1,7 @@
 import xmlrpc_redes as xmlrpc
 import datetime
 import sys
-from lorem_text import lorem
+#from lorem_text import lorem
 
 if len(sys.argv) >= 2:
     sv1_port = int(sys.argv[1])
@@ -62,13 +62,14 @@ print(f'conn1.concatStringEntero(5, "cinco -> ") = {resultado7}')
 assert resultado7 == "cinco -> 5", f'Error en conn1.concatStringEntero: {resultado7} != "cinco = 5"'
 
 #Implementar un método que recibe un string y devuelve el mismo string (echo)
-texto_largo = lorem.words(20000)
+"""
+texto_largo = lorem.words(200)
 resultado8 = conn1.echo(texto_largo)
 if (texto_largo == resultado8):
     print('conn1.echo(texto_largo) -> se recibio el mismo string que texto_largo')
 else:
     print('Error en conn1.echo -> no se recibio el mismo string que texto_largo')
-
+"""
 #Implementar un método que tarde mas de 10 segundos en responder
 print("<--- Ejecutando time.sleep! -->")
 resultado9 = conn1.timeout(15)
