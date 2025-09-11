@@ -1,7 +1,6 @@
 import xmlrpc_redes as xmlrpc
 import datetime
 import sys
-#from lorem_text import lorem
 
 if len(sys.argv) >= 2:
     sv1_port = int(sys.argv[1])
@@ -62,14 +61,27 @@ print(f'conn1.concatStringEntero(5, "cinco -> ") = {resultado7}')
 assert resultado7 == "cinco -> 5", f'Error en conn1.concatStringEntero: {resultado7} != "cinco = 5"'
 
 #Implementar un método que recibe un string y devuelve el mismo string (echo)
+texto_largo = """
+Integer placerat iaculis elit et faucibus. Integer id ex ut tellus molestie euismod. Phasellus leo mauris, consectetur non dolor non, lacinia tincidunt arcu. Nunc sit amet scelerisque enim. Sed ultricies nunc eget augue porta accumsan. Maecenas mauris justo, congue a ante in, tempus vehicula felis. Sed et consequat nibh, in rutrum tortor. Nullam elementum pharetra orci eget pellentesque. Cras at venenatis tellus. Sed mollis, tortor sed sagittis malesuada, massa nisl elementum sem, cursus luctus urna velit nec ligula.
+
+Nulla vehicula lacus sed velit posuere congue. Etiam id nibh dictum lectus finibus interdum. Vivamus sodales lobortis bibendum. Pellentesque gravida dolor at augue viverra tristique non eu est. Nullam aliquet eros nec libero efficitur, eget aliquam nunc sagittis. Donec enim sem, vestibulum sit amet mauris sagittis, dapibus rutrum neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent fermentum purus ut cursus euismod. Cras non egestas ante. In vel est tristique mauris aliquam gravida ac id augue.
+
+Quisque rhoncus erat mi, eget tincidunt turpis consectetur ac. Morbi posuere placerat arcu, ut commodo dolor venenatis vel. Nullam rhoncus sed diam quis malesuada. Duis sed orci euismod, rhoncus diam id, rutrum eros. Vestibulum nec nisi sed quam hendrerit hendrerit. Vestibulum a ligula hendrerit, feugiat lacus nec, faucibus nibh. Ut vel ullamcorper purus. Nam efficitur velit at massa ultricies tempus. Phasellus tristique quam ligula, a fringilla sem dignissim id.
+
+Pellentesque sodales nisi ullamcorper tortor pellentesque, eu fringilla sem rhoncus. Maecenas volutpat euismod nunc, id pulvinar nibh eleifend eu. Sed at quam porttitor, fringilla elit non, condimentum magna. Integer ut erat interdum, accumsan nisl non, hendrerit ligula. Donec sed nisl ut mi vulputate aliquet eu ac odio. Nunc egestas faucibus odio ac congue. Phasellus at blandit libero. Fusce nec feugiat libero, vitae tincidunt massa. Pellentesque nec lacus nisl. Suspendisse accumsan, dui eu tempus elementum, ante sem ultrices diam, vitae euismod lorem mauris vel orci. Suspendisse fringilla ornare justo ut accumsan.
+
+Integer mattis, arcu vitae porttitor fermentum, nisl urna tristique augue, sed ultricies tellus odio ut nulla. Pellentesque vel pharetra tortor. Etiam mattis vestibulum sollicitudin. Aliquam nec ipsum arcu. Pellentesque id odio id massa interdum rutrum. Etiam venenatis id felis ac efficitur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur magna arcu, auctor ac vulputate non, aliquet eu ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Nullam laoreet risus ac lacus porta suscipit. Fusce at lacinia sapien. Cras vel velit eget quam egestas lacinia quis non tortor. Fusce ut rhoncus odio, eu dignissim diam. Pellentesque tristique magna vel orci accumsan faucibus. Proin pellentesque ipsum ut urna dapibus tempor. Mauris non tellus erat. Vestibulum semper massa diam, et volutpat tellus rutrum a. Nam condimentum lacinia ex, vitae tempus odio tristique a. Donec placerat purus risus, eget consectetur turpis lacinia nec. Phasellus vulputate at dui ut varius. Duis in est mi.
+
+Fusce tortor enim, egestas id nisi in, pretium ornare metus. Donec varius enim vel lacus tempor, in fermentum massa vehicula. Maecenas vitae rhoncus augue, id pellentesque.
 """
-texto_largo = lorem.words(200)
 resultado8 = conn1.echo(texto_largo)
 if (texto_largo == resultado8):
     print('conn1.echo(texto_largo) -> se recibio el mismo string que texto_largo')
 else:
     print('Error en conn1.echo -> no se recibio el mismo string que texto_largo')
-"""
+
 #Implementar un método que tarde mas de 10 segundos en responder
 print("<--- Ejecutando time.sleep! -->")
 resultado9 = conn1.timeout(15)
