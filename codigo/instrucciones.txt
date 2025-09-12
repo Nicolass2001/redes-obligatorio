@@ -1,0 +1,31 @@
+Para la prueba de la librearia XML-RPC optamos por definir un cliente Client.py que llame a funciones remotas atendidas por dos servidores distintos: Server1 y Server2, cada uno de estos servidores ofrece distintas funciones remotas.
+
+Además, incluimos en el cliente algunas pruebas de errores relacionadas a XML-RPC y un ejecutable curl.py donde usando curl se hacen pruebas de errores relacionados a HTTP.
+
+Las instrucciones se describiran suponiendo que nos encontramos en el directorio /codigo del proyecto.
+Primero se deberá levantar dos servidores, tenemos dos servidores distintos Server1.py y Server2.py, cada uno ofreciendo distintas funciones remotas.
+    python Server1.py --> el servidor escucha por defecto en la ip = 150.150.0.2 y puerto = 5000
+    python Server1.py x --> el servidor escucha en la ip = 150.150.0.2 y puerto = x (Se especifica el puerto del servidor.)
+    python Server1.py x y --> el servidor escucha en la ip = y y puerto = x (Se especifica la ip y puerto del servidor.)
+
+Y para levantar el Server2.py tenemos distintas maneras de hacerlo:
+    python Server2.py --> el servidor escucha por defecto en la ip = 100.100.0.2 y puerto = 5001
+    python Server2.py x --> el servidor escucha en la ip = 100.100.0.2 y puerto = x (Se especifica el puerto del servidor.)
+    python Server2.py x y --> el servidor escucha en la ip = y y puerto = x (Se especifica la ip y puerto del servidor.)
+
+Luego de tener 2 servidores levantados podemos correr el cliente Client.py.
+Para correr el cliente tenemos tambien distintas opciones:
+    python Client.py --> el servidor se conectará a las direcciones por defecto de los servidores: 150.150.0.2:5000 y 100.100.0.2:5001
+    python Client.py x --> el servidor se conectará a las direcciones: 150.150.0.2:x y 100.100.0.2:5001 (Se especifica el puerto del primer servidor.)
+    python Client.py x y --> el servidor se conectará a las direcciones: 150.150.0.2:x y 100.100.0.2:y (Se especifica el puerto del primer y segundo servidor.)
+    python Client.py x y a --> el servidor se conectará a las direcciones: a:x y 100.100.0.2:y (Se especifica la ip y puerto del primer servidor y solo el puerto del segundo servidor.)
+    python Client.py x y a b --> el servidor se conectará a las direcciones: a:x y b:y (Se especifica la ip y puerto del primer y segundo servidor.)
+
+Al ejecutar el cliente podrá ver en la consola los resultados obtenidos por las pruebas.
+
+Para correr las pruebas relacionadas a HTTP hacia un servidor deberá, luego de haber levantado el servidor a probar, ejecutar el siguiente comando:
+    python curl.py --> las pruebas se haran hacia la direccion por defecto ip = 150.150.0.2 y puerto = 5000
+    python curl.py x --> las pruebas se haran hacia la direccion ip = 150.150.0.2 y puerto = x
+    python curl.py x y --> las pruebas se haran hacia la direccion ip = y y puerto = x
+
+En la consola podrá visualizar las respuestas xml obtenidas desde el servidor.
